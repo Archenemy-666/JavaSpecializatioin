@@ -15,6 +15,10 @@ public class ProductDao {
         List<Product> productList = productRepository.findAll();
         return  productList ;
     }
+    public List setProduct(List<Product> productList){
+        productRepository.saveAll(productList);
+        return  productList ;
+    }
 
     public void register(Product product){
         productRepository.save(product);

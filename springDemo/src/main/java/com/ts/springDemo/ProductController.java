@@ -16,11 +16,25 @@ public class ProductController {
     ProductDao productDao ;
 
     @RequestMapping("/request")
-    public Product register(){
-        Product product = new Product(1 , "phone" , 100000.23 ) ;
+    public void register(){
 
+        Product product = new Product(2 , "laptop" , 200000.63 ) ;
         productDao.register(product);
-        return product ;
+    }
+    @RequestMapping("/registerAll")
+    public List<Product> registerAll(){
+      // only printing 2 values 2 and 3 but not one reason ?
+        Product product1 = new Product(1 , "phone" , 100000.23 ) ;
+        Product product2 = new Product(2 , "laptop" , 200000.63 ) ;
+        Product product3 = new Product(3 , "headphones" , 20000.44 ) ;
+        List<Product> productList = new ArrayList<Product>();
+        productList.add(product1);
+        productList.add(product2);
+        productList.add(product3);
+        productDao.setProduct(productList);
+        return showAllProducts() ;
+
+
     }
 
     @RequestMapping("/showAllProducts")
