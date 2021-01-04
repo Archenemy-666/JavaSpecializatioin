@@ -3,6 +3,7 @@ package com.ts.springDemo;
 import com.dao.ProductDao;
 import com.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,22 +39,27 @@ public class ProductController {
     }
 
     @RequestMapping("/showAllProducts")
-    public List<Product> showAllProducts(){
+    public List<Product> showAllProducts() {
         List<Product> productList = productDao.getProduct();
+        return productList;
+    }
+
+    @RequestMapping("/ShowProductsById/{productId}")
+    public Product showProductById(@PathVariable("productId") Integer productId){
+        Product product = productDao.getProductById(productId);
+        return product ;
+    }
+    @RequestMapping("/ShowProductsByName/{productName}")
+    public Product showProductById(@PathVariable("productName") String productName){
+        Product product = productDao.getProductByName(productName);
+        return product ;
+    }
+    @RequestMapping("/showAllSortedProducts")
+    public List<Product> showAllSortedProducts(){
+        List<Product> productList = productDao.getSortedProduct();
         return productList ;
+    }
 
-            /*
-       Product product1 = new Product(1 , "phone" , 100000.23 ) ;
-       Product product2 = new Product(2 , "laptop" , 200000.63 ) ;
-       Product product3 = new Product(3 , "headphones" , 20000.44 ) ;
-
-       List<Product> productList = new ArrayList<Product>();
-       productList.add(product1);
-       productList.add(product2);
-       productList.add(product3);
-    */
-
-        }
 
 
     }

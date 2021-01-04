@@ -23,4 +23,19 @@ public class ProductDao {
     public void register(Product product){
         productRepository.save(product);
     }
+
+    public Product getProductById(Integer productId){
+        Product product = productRepository.findById(productId).orElse(new Product());
+        return product ;
+    }
+
+    public Product getProductByName(String productName){
+        Product product = productRepository.findByProductName(productName).orElse(new Product());
+        return product ;
+    }
+    public List<Product> getSortedProduct(){
+        List <Product> productList = productRepository.findAllSorted();
+        return  productList;
+
+    }
 }
